@@ -479,7 +479,7 @@ else:
                 st.success("Roster updated successfully!")
                 st.rerun()
 
-    elif st.session_state.page == "admin" and st.session_state.user == "arns":
+    elif st.session_state.page == "admin" and st.session_state.user == "arnseg":
         st.title("Admin Control Panel")
         if "admin_auth" not in st.session_state: st.session_state.admin_auth = False
         
