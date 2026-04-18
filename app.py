@@ -486,9 +486,9 @@ else:
         if not st.session_state.admin_auth:
             code = st.text_input("Enter Admin Secret Code", type="password")
             if st.button("Unlock"):
-                # Use the secret if it exists, otherwise fallback to the default code
-                admin_secret = st.secrets.get("ADMIN_CODE", "NHL123NHL")
-                if code == admin_secret:
+                if "ADMIN_CODE" not in st.secrets:
+                    st.error("Admin Secret Not Configured. Please set 'ADMIN_CODE' in your Streamlit Cloud secrets.")
+                elif code == st.secrets["ADMIN_CODE"]:
                     st.session_state.admin_auth = True
                     st.rerun()
                 else: st.error("Incorrect code")
