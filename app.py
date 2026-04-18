@@ -204,8 +204,9 @@ if not st.session_state.user:
                 saved_p = all_b[u_log].get("password")
                 hashed_p = hash_password(p_log)
                 
-                if not saved_p or saved_p == hashed_p:
-                    if not saved_p and p_log:
+                # Autorise la connexion si le mot de passe correspond (hashé ou clair pour transition)
+                if not saved_p or saved_p == hashed_p or saved_p == p_log:
+                    if (not saved_p or saved_p == p_log) and p_log:
                         all_b[u_log]["password"] = hashed_p
                         save_json("brackets.json", all_b)
                     st.session_state.user = u_log
