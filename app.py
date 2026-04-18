@@ -138,7 +138,7 @@ for t, (fs, ds, gs) in ROSTERS.items():
         s = player_stats.get(p, {"gp":0, "pts":0})
         all_d_rank.append({"p":p, "v": s['pts']/s['gp'] if s['gp'] > 0 else 0})
     for p in gs:
-        d = player_stats.get(p, {})
+        d = player_stats.get(p, {"sv_list": [0.900]})
         svl = d.get("sv_list", [d.get("sv", 0.900)])
         all_g_rank.append({"p":p, "v": sum(svl)/len(svl) if svl else 0.0})
 
